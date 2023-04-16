@@ -95,6 +95,13 @@ function initApp() {
   //   whileTeachersLength();
   //   whileTeacherIsLecturer();
   //   whileSearchByName("pet");
+  // filterTeachersOver40();
+  // filterTeacherByName("ma");
+  // filterLectures();
+  // sortNames();
+  // sortYears();
+  sortTeachersByName();
+  sortTeachersByAge();
 }
 
 // ========== forEach ========== //
@@ -243,5 +250,60 @@ function whileSearchByName(searchValue) {
   console.log(searchValue);
 }
 // ========== Filter items: array.filter(...) ========== //
+function filterTeachersOver40() {
+  const result = teachers.filter(checkAge);
+  function checkAge(teacher) {
+    return teacher.age > 40;
+  }
+  console.log(result);
+}
+function filterTeacherByName(searchValue) {
+  const result = teachers.filter(checkName);
+  console.log(result);
 
+  function checkName(teacher) {
+    return teacher.name.toLocaleLowerCase().includes(searchValue);
+  }
+}
+function filterLectures() {
+  const result = teachers.filter(isLecturer);
+  console.log(result);
+
+  function isLecturer(teacher) {
+    return teacher.title == "Lecturer";
+  }
+}
 // ========== Sorting: array.sort() ========== //
+function sortNames() {
+  let names = [];
+  for (const teacher of teachers) {
+    names.push(teacher.name);
+  }
+  names.sort();
+  console.log(names);
+}
+function sortYears() {
+  let years = [];
+  for (const teacher of teachers) {
+    years.push(teacher.age);
+  }
+  years.sort();
+  console.log(years);
+}
+//Fungerer ikke
+function sortTeachersByName() {
+  teachers.sort(compareName);
+  console.log(teachers);
+
+  function compareName(teacher1, teacher2) {
+    return teacher1.age - teacher2.age;
+  }
+}
+function sortTeachersByAge() {
+  teachers.sort(compareAge);
+  console.log(teachers);
+
+  function compareAge(teacher1, teacher2) {
+    return teacher1.name.localeCompare(teacher2.name);
+  }
+}
